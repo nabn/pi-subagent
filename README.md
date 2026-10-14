@@ -68,6 +68,8 @@ subagent stop a1b2c3
 subagent list
 ```
 
+Inside Pi with [pi-notify](https://github.com/Pyrolistical/pi-notify) installed, the bundled skill waits asynchronously with `pi-notify subagent wait <handle>`: the command returns immediately and the subagent's final response arrives as a message when it finishes, so the parent can keep working or wait on several subagents at once. `spawn` prints the matching wait command.
+
 Use `/subagent` to select an active child and focus its Herdr tab. The status widget shows active names (or handles for unnamed runs) and their current state.
 
 ## Isolation

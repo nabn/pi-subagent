@@ -202,8 +202,9 @@ function spawnSubagent(args: string[]): void {
 		throw error;
 	}
 
+	const waitCommand = `${process.env.PI_NOTIFY_DIR ? "pi-notify " : ""}subagent wait ${handle}`;
 	process.stdout.write(
-		`Spawned ${runDisplayName(launched)}\nState: busy\nHerdr tab: ${launched.herdrTabId} (pane ${launched.herdrPaneId})\n`,
+		`Spawned ${runDisplayName(launched)}\nState: busy\nHerdr tab: ${launched.herdrTabId} (pane ${launched.herdrPaneId})\nWait: ${waitCommand}\n`,
 	);
 }
 
