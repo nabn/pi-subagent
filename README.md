@@ -2,13 +2,13 @@
 
 Observable, persistent Pi subagents for independent reviews, investigations, and delegated implementation.
 
-Each subagent runs in its own tmux session with a dedicated Pi JSONL session. The parent can inspect status, wait for durable results, steer active work, queue follow-ups, or attach directly to the child TUI.
+Each subagent runs in its own [Herdr](https://herdr.dev) tab (in the parent's workspace, opened without stealing focus) with a dedicated Pi JSONL session. The parent can inspect status, wait for durable results, steer active work, queue follow-ups, or jump directly to the child TUI.
 
 ## Requirements
 
 - Pi
 - Node.js 22.19 or newer
-- tmux
+- Herdr (the parent Pi must run inside a Herdr pane, `HERDR_ENV=1`)
 
 ## Install
 
@@ -68,7 +68,7 @@ subagent stop a1b2c3
 subagent list
 ```
 
-Use `/subagent` to select and attach to an active child. The status widget shows active names (or handles for unnamed runs) and their current state.
+Use `/subagent` to select an active child and focus its Herdr tab. The status widget shows active names (or handles for unnamed runs) and their current state.
 
 ## Isolation
 
@@ -80,4 +80,4 @@ Optional spawn flags:
 - `--no-prompt-templates`: disable prompt templates
 - `--no-context-files`: ignore repository instruction files
 
-Nested subagents are disabled. Child sessions do not receive the subagent skill. Children survive `/reload`. When their spawning Pi session quits or is replaced, running children are suspended: the process stops, but transcript and metadata are kept. Resuming that parent session relaunches them idle with their full history. `subagent stop` removes a run permanently.
+Nested subagents are disabled. Child sessions do not receive the subagent skill. Children survive `/reload`. When their spawning Pi session quits or is replaced, running children are suspended: the Herdr pane is closed and the process stops, but transcript and metadata are kept. Resuming that parent session relaunches them idle with their full history. `subagent stop` removes a run permanently.
